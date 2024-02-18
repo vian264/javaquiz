@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        /* Additional CSS styles specific to the quiz */
+        #quiz {
+            display: none; /* Hide the quiz initially */
+            margin-top: 20px;
+        }
+        .question {
+            margin-bottom: 10px;
+        }
+        .options {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Your header content -->
+    </header>
+    <main>
+        <!-- Your main content -->
+        <div class="top">
+            <!-- Your top navigation links -->
+        </div>
+        
+        <!-- Java Quiz Section -->
+        <h1>Let's try this!!</h1>
+        <button onclick="startQuiz()">start</button>
+        <div id="quiz">
+            <!-- Quiz content will be inserted here -->
+        </div>
+    </main>
+    <footer>
+        <!-- Your footer content -->
+    </footer>
+
+    <!-- JavaScript for the Quiz -->
+    <script>
+        // Define your quiz questions and answers
+        var questions = [
+            {
+                question: "J option can be use in making animation in Java langauge",
+                options: ["true","false"],
+                answer: "false"
+            },
+            {
+                question: "Java is developed by James Gosling",
+                options: ["true","false"],
+                answer: "true"
+            },
+            {
+                question: "Java is an independent platform",
+                options: ["true","false"],
+                answer: "true"
+
+            },
+            {
+                question: "Java is a programming language",
+                options: ["true","false"],
+                answer: "true"
+            },
+            {
+                question: "System.out.println used to print line to the screen",
+                options: ["true","false"],
+                answer: "true"
+            },
+            {
+                question: "Java is pure oriented language",
+                options: ["true","false"],
+                answer: "true"
+
+            },
+            // Add more questions as needed
+        ];
+
+        // Function to display the quiz
+        function displayQuiz() {
+            var quizContainer = document.getElementById("quiz");
+            var quizHtml = "";
+            questions.forEach(function(questionObj, index) {
+                quizHtml += "<div class='question'>";
+                quizHtml += "<p>" + (index + 1) + ". " + questionObj.question + "</p>";
+                quizHtml += "<div class='options'>";
+                questionObj.options.forEach(function(option) {
+                    quizHtml += "<input type='radio' name='question" + index + "' value='" + option + "'>";
+                    quizHtml += "<label>" + option + "</label><br>";
+                });
+                quizHtml += "</div></div>";
+            });
+            quizHtml += "<button onclick='submitQuiz()'>Submit Quiz</button>";
+            quizContainer.innerHTML = quizHtml;
+        }
+
+        // Function to start the quiz
+        function startQuiz() {
+            displayQuiz(); // Display the quiz
+            document.getElementById("quiz").style.display = "block"; // Show the quiz
+        }
+
+        // Function to grade the quiz
+        function submitQuiz() {
+            var score = 0;
+            questions.forEach(function(questionObj, index) {
+                var selectedOption = document.querySelector("input[name='question" + index + "']:checked");
+                if (selectedOption) {
+                    if (selectedOption.value === questionObj.answer) {
+                        score++;
+                    }
+                }
+            });
+            alert("Your score: " + score + "/" + questions.length);
+        }
+    </script>
+</body>
+</html>
